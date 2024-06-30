@@ -1,7 +1,17 @@
+--instalar ambiente virtual
+
 1.-py -m venv myvenv
 
-2.-py -m pip install  --upgrade pip
+--activar ambiente virtual
 
-3.-pip install -r .\requirements.txt
+2.-.\myvenv\Scripts\activate
 
-4.-pip install crispy-bootstrap5  
+--ejecutardentro del ambiente virtual
+
+3.-py -m pip install  --upgrade pip
+
+4.-pip install -r .\requirements.txt
+
+5.-pip install crispy-bootstrap5  
+
+6.-pip install django Pillow

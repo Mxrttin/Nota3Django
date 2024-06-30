@@ -49,3 +49,20 @@ main.container {
     padding: 20px;
     border-radius: 5px;
 }
+
+.boton{
+    display: flex;
+    align-content: end;
+}
+
+.logout-container {
+    text-align: right;
+    margin-top: 20px;
+}
+
+
+
+.logout-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+}
