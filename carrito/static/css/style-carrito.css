@@ -49,3 +49,8 @@ main.container {
     padding: 20px;
     border-radius: 5px;
 }
+
+.boton{
+    display: flex;
+    align-content: end;
+}
