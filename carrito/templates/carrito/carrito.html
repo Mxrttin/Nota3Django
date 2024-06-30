@@ -48,10 +48,65 @@
 
     <main class="container mt-5 mb-5 ">
         <div class="row">
-            <div class="col col-xl-8 col-lg-8 col-md-6 col-sm-12 ">
-                <h1>Carrito de Compras</h1>
-                <div id="cartContainer" class="row"></div>
+            <div class="col col-lg-8 alert alert-primary" role="alert">
+
+
+                <table class="table table-bordered">
+            
+                    <thead>
+            
+                        <tr>
+                            <th scope="row" colspan="4" class="text-center"> Carrito</th>
+                        </tr>
+                        <tr>
+                            <th>Portada</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Cantidad</th>
+                        </tr>
+                    </thead>
+            
+                    <tbody>
+            
+                        {% if request.session.carrito.items %}
+                        {% for key,value in request.session.carrito.items %}
+                            <tr>
+                                <td><img src="{{ value.portada_url }}" alt="{{ value.nombre }}"></td>                               
+                                <td>{{value.nombre}}</td>
+                                <td>{{value.acumulado}}</td>
+                                <td>{{value.cantidad}}
+                                    <a href="{% url 'Add' value.producto_id %}" class="badge btn btn-dark badge-dark">+</a>
+                                    <a href="{% url 'Restar' value.producto_id %}" class="badge btn btn-dark badge-dark">-</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        {% else %}
+                        
+                        <tr>
+                            <td colspan="4">
+                                <div class="alert alert-danger text-center">Sin Productos</div>
+                            </td>
+                        </tr>
+                        {% endif %}
+            
+                        <tr>
+                            <th scope="row">Total:</th>
+                            <td colspan="3">${{total_carrito}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            
+                <hr>
+
+                <div class="row text-center">
+                    <div class="col-6"><a href="{% url 'Limpiar' %}" class="btn btn-danger">Limpiar</a></div>
+                    <div class="col-6"><a href="#" class="btn btn-success">Finalizar Compra</a></div>
+                </div>
+
+
             </div>
+            
+
 
             <div class="col col-xl-4 col-lg-4 col-md-6 col-sm-12">
                 <h1>Bienvenido,{{ user.username | upper }}</h1>

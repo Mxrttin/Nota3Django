@@ -18,7 +18,7 @@ class Libros(models.Model):
     publicacion=models.DateField(blank=False,null=False)
     escritor=models.CharField(max_length=50)
     descripcion=models.CharField(max_length=700)
-    imagen=models.ImageField(upload_to="libros",null=True)
+    imagen=models.ImageField(upload_to="media",null=True)
     precio=models.CharField(max_length=20)
 
     def __str__(self):

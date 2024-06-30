@@ -16,13 +16,14 @@ class Carrito:
         if id not in self.carrito.keys():
             self.carrito[id] = {
                 "producto_id": libro.id,
-                "nombre": libro.nombre,
-                "acumulado": libro.precio,
+                "nombre": libro.titulo,
+                "portada_url": libro.imagen.url if libro.imagen else None,                
+                "acumulado": float(libro.precio),  # Convertir a float para asegurar cálculos numéricos
                 "cantidad": 1,
             }
         else:
             self.carrito[id]["cantidad"] += 1
-            self.carrito[id]["acumulado"] += libro.precio
+            self.carrito[id]["acumulado"] += float(libro.precio)
 
         self.guardarCarrito()
 
@@ -30,21 +31,23 @@ class Carrito:
         self.session["carrito"] = self.carrito
         self.session.modified = True
 
-    def eliminar(self, producto):
+    def eliminar(self, libro):
         id = str(libro.id)
 
         if id in self.carrito:
             del self.carrito[id]
             self.guardarCarrito()
 
-    def restar(self, producto):
+    def restar(self, libro):
         id = str(libro.id)
 
         if id in self.carrito.keys():
-            self.carrito[id]["cantidad"] -= 1
-            self.carrito[id]["acumulado"] -= libro.precio
-            if self.carrito[id]["cantidad"] <= 0:
-                self.eliminar(producto)
+            if self.carrito[id]["cantidad"] > 1:
+                self.carrito[id]["cantidad"] -= 1
+                self.carrito[id]["acumulado"] -= float(libro.precio)
+            else:
+                self.eliminar(libro)
+            
             self.guardarCarrito()
 
     def limpiar(self):

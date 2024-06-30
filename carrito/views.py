@@ -21,13 +21,13 @@ def agregarProducto(request, libro_id):
     carrito.agregar(libro)
     return redirect("carrito")
 
-def eliminarProducto(request, producto_id):
+def eliminarProducto(request, libro_id):
     carrito = Carrito(request)
     libro = Libros.objects.get(id=libro_id)
     carrito.eliminar(libro)
     return redirect("carrito")
 
-def restarProducto(request, producto_id):
+def restarProducto(request, libro_id):
     carrito = Carrito(request)
     libro = Libros.objects.get(id=libro_id)
     carrito.restar(libro)

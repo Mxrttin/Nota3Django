@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
+from .models import Libros
 
 
 # Create your views here.
@@ -8,18 +9,20 @@ from django.contrib.auth.decorators import login_required
 @login_required
 
 def comics(request):
-    context = {}
-    return render(request, "libros/comics.html",context)
+    libros = Libros.objects.all()
+    return render(request, "libros/comics.html", {'libros': libros})
 
 
 @login_required
 
 def mangas(request):
-    context = {}
-    return render(request, "libros/mangas.html",context)
+    libros = Libros.objects.all()
+    return render(request, "libros/mangas.html",{'libros': libros})
 
 
 @login_required
 def destacados(request):
     context = {}
     return render(request, "libros/destacados.html",context)
+
+
