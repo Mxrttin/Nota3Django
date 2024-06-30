@@ -62,6 +62,13 @@
                     <div class="registrarse">
                         <a href="./registrarse.html">Registrarse</a>
                     </div>
+                    {% if request.user.is_authenticated  %}
+                    <div class="registrarse">
+                      <a class="nav-link" href="{% url 'exit' %}">Salir</a>
+                    </div>
+
+                    {% endif %}
+
                   </form>
                 
             </div>

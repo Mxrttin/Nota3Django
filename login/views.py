@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render , redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from .forms import CustomUserCreationForm
@@ -13,6 +13,9 @@ def login(request):
     return render(request , "login/inicioS.html",context)
 
 
+def exit(request):
+    logout(request)
+    return redirect('inicio')
 
 
 def register(request):

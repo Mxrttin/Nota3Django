@@ -31,10 +31,21 @@ header {
 
 main {
     flex: 1;
+    background-color: white;
+}
+
+.row {
+    background-color: transparent; /* Asegúrate de que las filas no tengan color */
 }
 
 footer {
     background: #f1f1f1; /* Color de fondo del footer */
     text-align: center; /* Centrar el texto */
     padding: 10px 0; /* Espaciado dentro del footer */
+}
+
+main.container {
+    background-color: white !important;
+    padding: 20px;
+    border-radius: 5px;
 }

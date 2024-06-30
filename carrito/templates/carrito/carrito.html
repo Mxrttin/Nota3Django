@@ -45,10 +45,26 @@
         </nav>
     </header>
 
-    <main class="container mt-5">
-        <h1>Carrito de Compras</h1>
-        <div id="cartContainer" class="row"></div>
+
+    <main class="container-fluid mt-5 ">
+        <div class="row">
+            <div class="col col-xl-8 col-lg-8 col-md-6 col-sm-12 ">
+                <h1>Carrito de Compras</h1>
+                <div id="cartContainer" class="row"></div>
+            </div>
+
+            <div class="col col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                <h1>Bienvenido</h1>
+                {% if request.user.is_authenticated  %}
+                <hr>
+                <h4>
+                {{ user.username | upper }},bienvenido
+                </h4>
+                {% endif %}
+            </div>
+        </div>
     </main>
+
 
     <footer id="footer" class="bg-light text-dark pt-5 pb-4 mt-3">
         <div class="container text-center text-md-start">
