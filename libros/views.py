@@ -22,7 +22,7 @@ def mangas(request):
 
 @login_required
 def destacados(request):
-    context = {}
-    return render(request, "libros/destacados.html",context)
+    libros = Libros.objects.all()
+    return render(request, "libros/destacados.html",{'libros': libros})
 
 
