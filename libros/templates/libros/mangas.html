@@ -54,8 +54,8 @@
                     <img src="{{ libro.imagen.url }}" alt="{{ libro.titulo }}" class="card-img-top">
                     <h3 class="card-title">{{libro.titulo}}</h3>
                     <p class="card-text">Escritor: {{libro.escritor}}</p>
+                    <p class="card-text">Publicacion: {{libro.publicacion}}</p>
                     <h5 class="card-text mb-4">Precio: {{libro.precio}}</h5>
-                    <button class="btn btn-success mx-5 mb-3">Ver detalles</button>
                     <button class="btn btn-success mb-4 add-cart"><a href="{% url 'Add' libro.id %}" class="text-light">Añadir al carrito</a></button>
                   </div>
                 </div>

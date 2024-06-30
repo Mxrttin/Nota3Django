@@ -54,8 +54,8 @@
                     <img src="{{ libro.imagen.url }}" alt="{{ libro.titulo }}" class="card-img-top">
                     <h3 class="card-title">{{libro.titulo}}</h3>
                     <p class="card-text">Escritor: {{libro.escritor}}</p>
+                    <p class="card-text">Publicacion: {{libro.publicacion}}</p>
                     <h5 class="card-text mb-4">Precio: {{libro.precio}}</h5>
-                    <button class="btn btn-success mx-5 mb-3">Ver detalles</button>
                     <button class="btn btn-success mb-4 add-cart"><a href="{% url 'Add' libro.id %}" class="text-light">Añadir al carrito</a></button>
                   </div>
                 </div>
@@ -68,29 +68,6 @@
       </div>
   </div>
 
-    <footer id="footer" class="bg-light text-dark pt-5 pb-4 mt-3">
-
-        <div class="container text-center text-md-start">
-  
-      <div class="container mt-5">
-          <h2>Resultados de la búsqueda</h2>
-          <div class="row">
-              {% for libro in libros %}
-                  <div class="col-md-4">
-                      <div class="card mb-4">
-                          <img src="{{ libro.imagen.url }}" class="card-img-top" alt="{{ libro.titulo }}">
-                          <div class="card-body">
-                              <h5 class="card-title">{{ libro.titulo }}</h5>
-                              <p class="card-text">{{ libro.descripcion }}</p>
-                              <p class="card-text"><small class="text-muted">Escritor: {{ libro.escritor }}</small></p>
-                              <p class="card-text"><small class="text-muted">Serie: {{ libro.serie }}</small></p>
-                              <p class="card-text"><small class="text-muted">Precio: ${{ libro.precio }}</small></p>
-                          </div>
-                      </div>
-                  </div>
-              {% endfor %}
-          </div>
-      </div>
   
       <footer class="bg-light text-dark pt-5 pb-4 mt-3">
           <div class="container text-center text-md-start">
