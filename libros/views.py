@@ -1,11 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .models import Libros
-<<<<<<< HEAD
 from .forms import SearchForm
-=======
-
->>>>>>> 881105c3acfd9889139c471aef01555f82ccf41d
 
 # Create your views here.
 
@@ -26,9 +22,8 @@ def mangas(request):
 
 @login_required
 def destacados(request):
-<<<<<<< HEAD
-    context = {}
-    return render(request, "libros/destacados.html",context)
+    libros = Libros.objects.all()
+    return render(request, "libros/destacados.html",{'libros': libros})
 
 def search_view(request):
     form = SearchForm(request.GET or None)
@@ -47,9 +42,6 @@ def search_view(request):
 
     
     
-=======
-    libros = Libros.objects.all()
-    return render(request, "libros/destacados.html",{'libros': libros})
+  
 
->>>>>>> 881105c3acfd9889139c471aef01555f82ccf41d
 
