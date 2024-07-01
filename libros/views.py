@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .models import Libros
-from .forms import SearchForm
+# from .forms import SearchForm
+from django.db.models import Q
 
 # Create your views here.
 
@@ -26,24 +27,22 @@ def destacados(request):
     return render(request, "libros/destacados.html",{'libros': libros})
 
 
-def search_view(request):
-    form = SearchForm(request.GET or None)
-    libros = []
-
-    if form.is_valid():
-        libros = form.filter_libros()
-
-    context = {
-        'form': form,
-        'libros': libros,
-    }
-    
-    if form.cleaned_data.get('tipo') == 'manga':
-        return render(request, 'mangas.html', context)
-    else:
-        return render(request, 'comics,html', context)
 
        
+@login_required
+def buscar(request):
+    busqueda= request.GET.get("buscar")
+    libros = Libros.objects.all()
+
+
+    if busqueda:
+        libros=Libros.objects.filter(
+            Q(titulo__icontains = busqueda) |
+            Q(escritor__icontains = busqueda) |
+            Q(id_serie__serie__icontains = busqueda) 
+        ).distinct()
+
+    return render(request,"libros/busqueda.html",{'libros':libros})
 
     
     

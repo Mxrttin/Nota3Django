@@ -33,11 +33,10 @@
               </li>
                 </ul>
 
-                <form method="GET" action="{% url 'search ' %}" class="d-flex">
-                    {{ form.as_p }}
-                    <input class="form-control me-2" type="search" placeholder="Buscar" aria-labal="Search" name="q">
+                <form method="GET" action="{% url 'buscar' %}" class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Buscar" aria-labal="Search" name="buscar">
                     <button class="btn btn-outline-warning" type="submit">Buscar</button>
-                    <a href="{% url 'carrito' % }">
+                    <a href="{% url 'carrito' %}">
                       <button class="btn btn-outline ms-4 me-3" type="button"><i class="fa-solid fa-cart-shopping"></i></button>
                     </a>
                 </form>

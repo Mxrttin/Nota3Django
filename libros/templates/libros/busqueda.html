@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Comics Sharingan</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style-comics-manga.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style-busqueda.css' %}">
 </head>
 <body>
     <header>
@@ -22,10 +22,10 @@
                     <a class="nav-link " aria-current="page" href="{% url 'inicio' %}">Inicio</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link active bg-warning "  href="./comics">Comics</a>
+                  <a class="nav-link "  href="{% url 'comics' %}">Comics</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link  "  href="./mangas">Mangas</a> 
+                <a class="nav-link  "  href="{% url 'mangas' %}">Mangas</a> 
             </li>
 
               <li class="nav-item">
@@ -45,24 +45,28 @@
     </header>
 
     
-    <div class="container">
+    <div class="container-fluid">
       <div class="row " id="card-container">
             {% for libro in libros %}
-              {% if libro.id_serie.serie == 'Marvel' or libro.id_serie.serie == 'DC' %}
-                <div class="col col-xl-4 col-lg-4 col-md-6 col-xs-12 col-sm-12">
-
-                  <div class="card mt-5 mb-5">
-  
-                    <img src="{{ libro.imagen.url }}" alt="{{ libro.titulo }}" class="card-img-top">
-                    <h3 class="card-title">{{libro.titulo}}</h3>
-                    <p class="card-text">Escritor: {{libro.escritor}}</p>
-                    <p class="card-text">Publicacion: {{libro.publicacion}}</p>
-                    <h5 class="card-text mb-4">Precio: {{libro.precio}}</h5>
-                    <button class="btn btn-success mb-4 add-cart"><a href="{% url 'Add' libro.id %}" class="text-light">Añadir al carrito</a></button>
-                  </div>
+                <div class="col col-xl-4 col-lg-4 col-md-4 col-xs-12 col-sm-12 d-img">
+                    <img src="{{ libro.imagen.url }}" alt="{{ libro.titulo }}" class="img-fluid" width="600px">
+                </div>               
+                
+                <div class="col col-xl-8 col-lg-8 col-md-8 col-sm-12 col-xs-12 d-info">
+                        <h1 id="namePage">{{libro.titulo}}</h1>
+                        <br>
+                        <h2 id="publicaionPage">Publicacion: {{libro.publicacion}}</h2>
+                        <br>
+                        <h2 id="escritorPage">Escritor: {{libro.escritor}}</h2>
+                        <br>
+                        <h5 id="descripcionPage">{{libro.descripcion}}</h5>
+                        <br>
+                        <h2 id="precioPage">Precio: {{libro.precio}}</h2>
+                        <div class="botones">
+                          <a class="btn btn-dark text-light mt-2 mb-2" href="{% url 'Add' libro.id %}">Agregar al Carrito</a>
+                      </div>
                 </div>
-
-              {% endif %}
+                  <div class="card mt-5 mb-5">
             {% empty %}
                 <p>No se encontraron comics.</p>
             {% endfor %}
