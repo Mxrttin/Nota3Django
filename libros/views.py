@@ -25,20 +25,25 @@ def destacados(request):
     libros = Libros.objects.all()
     return render(request, "libros/destacados.html",{'libros': libros})
 
+
 def search_view(request):
     form = SearchForm(request.GET or None)
-    libros = Libros.objects.all()
+    libros = []
 
     if form.is_valid():
-        titulo = form.cleaned_data.get('titulo')
-        escritor = form.cleaned_data.get('escritor')
+        libros = form.filter_libros()
 
-        if titulo:
-            libros = libros.filter(titulo__icontains=titulo)
-        if escritor:
-            libros = libros.filter(titulo__icontains=escritor)
+    context = {
+        'form': form,
+        'libros': libros,
+    }
+    
+    if form.cleaned_data.get('tipo') == 'manga':
+        return render(request, 'mangas.html', context)
+    else:
+        return render(request, 'comics,html', context)
 
-    return render(request, 'comics.html', {'form': form, 'libros': libros})
+       
 
     
     
