@@ -32,10 +32,13 @@
                   <a class="nav-link " href="#footer">Contactanos</a>
               </li>
                 </ul>
-                <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-                <button class="btn btn-outline-warning" type="submit">Search</button>
-                <a href="{% url 'carrito' %}"><button class="btn btn-outline ms-4 me-3 " type="button"><i class="fa-solid fa-cart-shopping"></i></button></a>
+                <form method="GET" action="{% url 'search %'}" class="d-flex">
+                    {{ form.as_p }}
+                    <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" name="q">
+                    <button class="btn btn-outline-warning" type="submit">Buscar</button>
+                    <a href="{% url 'carrito' %}">
+                        <button class="btn btn-outline ms-4 me-3" type="button"><i class="fa-solid fa-cart-shopping"></i></button>
+                    </a>
                 </form>
             </div>
             </div>
@@ -61,10 +64,9 @@
                 </div>
 
               {% endif %}
+            {% empty %}
+                <p>No se encontraron comics.</p>
             {% endfor %}
-
-        
-
       </div>
   </div>
 
