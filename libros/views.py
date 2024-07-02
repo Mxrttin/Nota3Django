@@ -45,7 +45,15 @@ def buscar(request):
     return render(request,"libros/busqueda.html",{'libros':libros})
 
     
+def detalles(request):    
+    busqueda = request.GET.get("buscar")
+    libro_id = request.GET.get("libro_id")
     
-  
-
+    if libro_id:
+        try:
+            libro = Libros.objects.get(id=libro_id)
+            libros = [libro]
+        except Libros.DoesNotExist:
+            libros = []
+    return render(request, "libros/detalles.html", {'libros': libros})
 

@@ -1,5 +1,6 @@
 body{
-    background-color: white;
+    background-image: url(../img/fondoN.png);  
+
 }
 
 .d-info{
@@ -9,10 +10,9 @@ body{
 
 }
 
-#imagePage{
-    margin-top: 2rem;
+.d-img{
+ 
     margin-bottom: 4rem;
-  
 }
 .botones{
     display: flex;
