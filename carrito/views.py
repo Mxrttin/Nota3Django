@@ -1,4 +1,3 @@
-import uuid
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from .carrito import Carrito
@@ -51,13 +50,21 @@ def realizarCompra(request):
         comuna = request.POST['comuna']
         codigo_postal = request.POST['codigo_postal']
 
-    
+
+        id_trans = Orden.objects.order_by('transaccion_id').last()
+
+        if id_trans and id_trans.transaccion_id.isdigit():
+            id_nuevo = int(id_trans.transaccion_id) + 1
+        else :
+            id_nuevo = 1
+
+
         # crear Orden de compra
         orden = Orden.objects.create(
             cliente = request.user,
             fecha_orden = timezone.now(),
             completo = True,
-            transaccion_id=str(uuid.uuid4())
+            transaccion_id=str(id_nuevo)
         )
 
         
