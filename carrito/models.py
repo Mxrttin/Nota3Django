@@ -1,5 +1,6 @@
 from django.db import models 
 from django.contrib.auth.models import User
+from libros.models import Libros
 
 # Create your models here.
 
@@ -24,4 +25,13 @@ class DireccionEnvio (models.Model):
 
     def __str__(self):
         return self.direccion
+
+
+class ProductosComprados(models.Model):
+    Orden = models.ForeignKey(Orden , on_delete = models.SET_NULL , blank = True , null = True)
+    titulo = models.ForeignKey(Libros, on_delete=models.SET_NULL,blank = True , null= True)
+    cantidad = models.IntegerField( default = 0,blank = True , null= True)
+
+    def __str__(self):
+        return str(self.Orden)
 

@@ -2,7 +2,7 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
 from .carrito import Carrito
 from libros.models import Libros
-from .models import Orden , DireccionEnvio
+from .models import Orden , DireccionEnvio , ProductosComprados
 from django.utils import timezone
 
 # Create your views here.
@@ -79,6 +79,17 @@ def realizarCompra(request):
         )
 
         carrito = Carrito(request)
+
+        # Crear ProductosComprados para cada item en el carrito
+        for id, item in carrito.carrito.items():
+            libro = Libros.objects.get(id=item['producto_id'])
+            cantidad = item['cantidad']
+            ProductosComprados.objects.create(
+                Orden=orden,
+                titulo=libro,
+                cantidad=cantidad
+            )
+
         carrito.limpiar()
 
     return render (request , "inicio/inicio.html")
